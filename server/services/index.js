@@ -3,15 +3,13 @@ const catalogue = require("../data/phones.json");
 const checkParams = require("../utils/checkparams");
 
 module.exports = {
-  getAllPhones() {
-    debugger;
-    return json.parse(catalogue);
+  async getAllPhones() {
+    return catalogue;
   },
 
-  getPhoneById(id) {
-    debugger;
+  async getPhoneById(id) {
     checkParams([{ key: "id", value: id, type: String }]);
-    const phone = catalogue.find(phone => phone.id === id);
+    const phone = await catalogue.find(phone => phone.id === id);
     return phone;
   }
 };

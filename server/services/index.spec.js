@@ -14,7 +14,7 @@ describe("services", () => {
       } catch (err) {
         expect(err).to.be.instanceof(NotFoundError);
 
-        expect(err.message).to.equal("Contacts not found");
+        expect(err.message).to.equal("Phones not found");
       }
     });
 
@@ -25,7 +25,7 @@ describe("services", () => {
         } catch (err) {
           expect(err).to.be.instanceof(NotFoundError);
 
-          expect(err.message).to.equal("Contact not found");
+          expect(err.message).to.equal("Phone not found");
         }
       });
     });

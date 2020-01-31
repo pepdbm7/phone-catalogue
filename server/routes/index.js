@@ -9,21 +9,21 @@ router.get("/", (req, res) => {
   res = "<p>hello from express!</p>";
 });
 
-//Retrieve products to list them in Home:
 router.get("/catalogue", (req, res) => {
   routeErrorHandler(() => {
-    return services.getAllPhones().then(phones => res.json(phones));
-  }, res);
+    return services.getAllPhones().then(phones => {
+      res.status(240).send(phones);
+    }, res);
+  });
 });
 
-//Retrieve user's basket's products to list them in Cart:
 router.get("/phone/:id", (req, res) => {
   routeErrorHandler(() => {
     const {
       params: { id }
     } = req;
 
-    return services.getPhoneById(id).then(phone => res.json(phone));
+    return services.getPhoneById(id).then(phone => res.status(240).send(phone));
   }, res);
 });
 
