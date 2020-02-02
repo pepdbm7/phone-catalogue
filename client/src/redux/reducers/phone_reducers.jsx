@@ -1,16 +1,16 @@
-import { GET_ALL_PHONES } from "../actions/types";
+import { GET_PHONE } from "../actions/types";
 
 //every reducer has its own state!:
 
 const initialState = {
-  phones: []
+  phone: []
 };
 
 export default (state = initialState, action) => {
-  if (action.type === GET_ALL_PHONES)
+  if (action.type === GET_PHONE)
     return {
       ...state,
-      phones: action.payload
+      phone: action.payload
     };
 
   return state;

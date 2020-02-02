@@ -1,34 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// import { StoreContext } from "../store";
+//Redux:
+import { connect } from "react-redux";
+import { getAllPhones } from "../redux/actions/phones_actions";
 import Spinner from "./Spinner";
-import axios from "axios";
 
-const Catalogue = ({ history }) => {
-  const [allPhones, setAllPhones] = useState([]);
-  // const {
-  //   isLoading: [isLoading, setIsLoading],
-  //   allPhones: [allPhones, setAllPhones]
-  // } = useContext(StoreContext);
+const Catalogue = props => {
+  useEffect(async () => props.getAllPhones(), []);
 
-  useEffect(() => {
-    // setIsLoading(true);
-    !allPhones.lenght &&
-      axios.get("/catalogue").then(({ data }) => {
-        setAllPhones(data);
-        // setIsLoading(false);
-      });
-  }, []);
-
-  const goToPhone = () => history.push("/phone");
+  const goToPhone = () => props.history.push("/phone");
 
   return (
     <>
       <Title>Catalogue of our phones</Title>
       <Container>
         {// !isLoading &&
-        allPhones.length ? (
-          allPhones.map((phone, i) => (
+        props.phones.length ? (
+          props.phones.map((phone, i) => (
             <PhoneCard key={i} onClick={() => goToPhone(phone.id)}>
               <PhoneImage src={`/img/${phone.imageFileName}`} alt="phone" />
               <PhoneName>{phone.name}</PhoneName>
@@ -93,4 +81,11 @@ const PhonePrice = styled.p`
   font-weight: 300;
 `;
 
-export default Catalogue;
+const mapStateToProps = state => {
+  console.log(state.phones.phones);
+  return {
+    phones: state.phones.phones
+  };
+};
+
+export default connect(mapStateToProps, { getAllPhones })(Catalogue);

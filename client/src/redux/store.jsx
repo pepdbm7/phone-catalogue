@@ -1,11 +1,9 @@
-import { createStore, combineReducers } from "redux";
-import phonesReducers from "./reducers/phones_reducers";
-import spinnerReducers from "./reducers/spinner_reducers";
+import { createStore, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
+import rootReducers from "./reducers";
 
-const reducers = combineReducers({
-  phonesReducers,
-  spinnerReducers
-});
+const middleware = applyMiddleware(thunkMiddleware); //for async store updates
 
-const store = createStore(reducers);
+const store = createStore(rootReducers, middleware);
+
 export default store;

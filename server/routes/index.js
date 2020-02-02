@@ -12,14 +12,14 @@ router.get("/", (req, res) => {
 router.get("/catalogue", (req, res) => {
   routeErrorHandler(() => {
     return services.getAllPhones().then(phones => {
-      res.status(240).send(phones);
+      res.status(200).send(phones);
     }, res);
   });
 });
 
 //response on any different route:
 router.get("*", function(req, res) {
-  res.send("Not Found", 404);
+  res.status(404).send("Not Found");
 });
 
 module.exports = router;
