@@ -17,16 +17,6 @@ router.get("/catalogue", (req, res) => {
   });
 });
 
-router.get("/phone/:id", (req, res) => {
-  routeErrorHandler(() => {
-    const {
-      params: { id }
-    } = req;
-
-    return services.getPhoneById(id).then(phone => res.status(240).send(phone));
-  }, res);
-});
-
 //response on any different route:
 router.get("*", function(req, res) {
   res.send("Not Found", 404);
