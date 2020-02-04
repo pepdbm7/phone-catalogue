@@ -1,17 +1,18 @@
-import { GET_ALL_PHONES } from "../actions/types";
-
-//every reducer has its own state!:
-
 const initialState = {
-  phones: []
+  phones: [],
+  isloading: false,
+  errorMessage: ""
 };
 
 export default (state = initialState, action) => {
-  if (action.type === GET_ALL_PHONES)
-    return {
-      ...state,
-      phones: action.payload
-    };
-
-  return state;
+  switch (action.type) {
+    case "GET_ALL_PHONES_REQUEST":
+      return { ...state, isloading: true };
+    case "GET_ALL_PHONES_SUCCESS":
+      return { ...state, phones: action.payload, isloading: false };
+    case "GET_ALL_PHONES_FAILURE":
+      return { ...state, isloading: false, errorMessage: action.error };
+    default:
+      return state;
+  }
 };

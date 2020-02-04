@@ -5,10 +5,6 @@ const router = express.Router();
 const services = require("../services");
 const routeErrorHandler = require("./route-error-handler");
 
-router.get("/", (req, res) => {
-  res = "<p>hello from express!</p>";
-});
-
 router.get("/catalogue", (req, res) => {
   routeErrorHandler(() => {
     return services.getAllPhones().then(phones => {
