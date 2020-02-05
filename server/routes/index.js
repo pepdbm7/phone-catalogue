@@ -3,14 +3,16 @@ const router = express.Router();
 
 //utils:
 const services = require("../services");
-const routeErrorHandler = require("./route-error-handler");
 
 router.get("/catalogue", (req, res) => {
-  routeErrorHandler(() => {
-    return services.getAllPhones().then(phones => {
-      res.status(200).send(phones);
-    }, res);
-  });
+  return (
+    services
+      .getAllPhones()
+      .then(phones => {
+        res.status(200).send(phones);
+      }, res)
+      .catch(err) > res.json({ error: err.message })
+  );
 });
 
 //response on any different route:

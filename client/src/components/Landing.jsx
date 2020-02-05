@@ -37,7 +37,7 @@ const Button = styled.button`
   font-size: 1.5em;
   &:hover {
     color: rgba(14, 14, 97, 1);
-    border: rgba(14, 14, 97, 1);
+    border: 1px solid rgba(14, 14, 97, 1);
     box-shadow: 0 0 15px 1px white;
   }
   @keyframes waving {

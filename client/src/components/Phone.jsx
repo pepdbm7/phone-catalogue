@@ -105,7 +105,7 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     color: rgba(14, 14, 97, 1);
-    border: rgba(14, 14, 97, 1);
+    border: 1px solid rgba(14, 14, 97, 1);
     box-shadow: 0 0 15px 1px white;
   }
 
@@ -119,13 +119,10 @@ const Button = styled.button`
   }
 `;
 
-const mapStateToProps = state => {
-  console.log(state.phone);
-  return {
-    phone: state.phone.phone,
-    isLoading: state.phone.isloading,
-    errorMessage: state.phone.errorMessage
-  };
-};
+const mapStateToProps = state => ({
+  phone: state.phone.phone,
+  isLoading: state.phone.isloading,
+  errorMessage: state.phone.errorMessage
+});
 
 export default connect(mapStateToProps, { getPhone })(Phone);

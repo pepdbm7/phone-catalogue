@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "debug": "node --inspect index.js",
-    "test": "mocha services"
+    "test": "mocha services/index.spec.js"
   },
   "keywords": [],
   "author": "Josep del Baño",
